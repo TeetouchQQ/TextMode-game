@@ -76,15 +76,13 @@ if(!ReadConsoleOutputCharacter(hStd,(LPTSTR)buf,1,c,(LPDWORD)&num_read) ){
 }else{
 	return buf[0];
 }
-
-
 }
 
 int star =0;
-int destory_pitch = 1500;
+int destory_pitch = 2000;
 int destory_range = 1000;
-int move_pitch = 1000;
-int move_range = 150;
+int move_pitch = 1200;
+int move_range = 130;
 int score = 0;
 int main() {
 	srand(time(NULL));
@@ -260,7 +258,7 @@ int main() {
 			}
 		}
 		draw_score(score);
-		Sleep(100);
+		Sleep(500);
 	} while (ch!='x');
 	return 0;
 }
