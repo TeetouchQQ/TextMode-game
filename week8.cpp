@@ -43,7 +43,7 @@ fdwMode = ENABLE_EXTENDED_FLAGS | ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT;
 SetConsoleMode(rHnd, fdwMode);
 return 0;
 }
-\
+
 
 void ship_to_buffer(){
 	consoleBuffer[ship.X_middle + screen_x * ship.Y_middle].Char.AsciiChar ='0';
@@ -101,7 +101,19 @@ void checkcolli(){
 	} 
 	
 }
-
+void star_fall()
+{
+int i;
+	for (i = 0; i < scount; i++) {
+		if (star[i].Y >= screen_y-1) {
+		star[i] = { (rand() % screen_x),1 };
+		}
+	else {
+		star[i].Y +=1;
+		//star[i] = { star[i].X,star[i].Y+1 };
+		}
+	}
+}
 int main()
 {
 
@@ -157,13 +169,14 @@ while (play)
 	}
 	clear_buffer();
 	ship_to_buffer();
+	star_fall();
 	fill_star_to_buffer();
 	checkcolli();
 	fill_buffer_to_console();
 	if(ship.life < 1){
 		play = false;
 	}
-	Sleep(50);
+	Sleep(100);
 }
 return 0;
 }
